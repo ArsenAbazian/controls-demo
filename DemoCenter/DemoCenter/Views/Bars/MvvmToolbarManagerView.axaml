@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:bars="clr-namespace:Eremex.AvaloniaUI.Controls.Bars;assembly=Eremex.Avalonia.Controls"
+             xmlns:viewModels="clr-namespace:DemoCenter.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="DemoCenter.Views.MvvmToolbarManagerView">
+    <Design.DataContext>
+        <viewModels:MvvmToolbarManagerViewModel />
+    </Design.DataContext>
+    <bars:ToolbarManager IsWindowManager="True" x:Name="DemoControl">
+        <Grid RowDefinitions="Auto, *, Auto" ColumnDefinitions="Auto, *, Auto">
+            <bars:ToolbarContainerControl Grid.ColumnSpan="3" DockType="Top" ItemsSource="{Binding TopToolbars}">
+                <bars:ToolbarContainerControl.DataTemplates>
+                    <DataTemplate DataType="viewModels:MvvmToolbarViewModel">
+                        <bars:Toolbar ItemsSource="{Binding Items}" DisplayMode="{Binding DisplayMode}" StretchToolbar="{Binding StretchToolbar}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="viewModels:MvvmToolbarButtonItemViewModel">
+                        <bars:ToolbarButtonItem 
+                            Header="{Binding Header}"
+                            Glyph="{Binding Glyph}"
+                            Command="{Binding Command}"
+                            ShowSeparator="{Binding ShowSeparator}"
+                            CommandParameter="{Binding CommandParameter}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="viewModels:MvvmToolbarCheckItemViewModel">
+                        <bars:ToolbarCheckItem 
+                            Header="{Binding Header}"
+                            Glyph="{Binding Glyph}"
+                            ShowSeparator="{Binding ShowSeparator}"
+                            IsChecked="{Binding IsChecked}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="viewModels:MvvmToolbarMenuItemViewModel">
+                        <bars:ToolbarMenuItem 
+                            Header="{Binding Header}"
+                            Glyph="{Binding Glyph}"
+                            ShowSeparator="{Binding ShowSeparator}"
+                            ItemsSource="{Binding Items}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="viewModels:MvvmToolbarCheckGroupViewModel">
+                        <bars:ToolbarCheckItemGroup
+                            CheckType="{Binding Type}"
+                            ItemsSource="{Binding Items}"/>
+                    </DataTemplate>
+                </bars:ToolbarContainerControl.DataTemplates>
+            </bars:ToolbarContainerControl>
+            <bars:ToolbarContainerControl Grid.Row="1" Grid.Column="0" DockType="Left"/>
+            <bars:ToolbarContainerControl Grid.Row="1" Grid.Column="2" DockType="Right"/>
+            <bars:ToolbarContainerControl Grid.ColumnSpan="3" Grid.Row="2" DockType="Bottom" ItemsSource="{Binding BottomToolbars}">
+                <bars:ToolbarContainerControl.DataTemplates>
+                    <DataTemplate DataType="viewModels:MvvmToolbarViewModel">
+                        <bars:Toolbar ItemsSource="{Binding Items}" DisplayMode="{Binding DisplayMode}"/>
+                    </DataTemplate>
+                    <DataTemplate DataType="viewModels:MvvmToolbarTextItemViewModel">
+                        <bars:ToolbarTextItem 
+                            Header="{Binding Header}"
+                            Glyph="{Binding Glyph}"
+                            ShowSeparator="{Binding ShowSeparator}"
+                            ShowBorder="{Binding ShowBorder}"/>
+                    </DataTemplate>
+                </bars:ToolbarContainerControl.DataTemplates>
+            </bars:ToolbarContainerControl>
+            
+            <Border Grid.Row="1" Grid.Column="1" Background="{DynamicResource Fill/Neutral/Tertiary}"/>
+        </Grid>
+    </bars:ToolbarManager>
+</UserControl>

@@ -45,7 +45,7 @@
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
-
+    
   <Target Name="SourceCode" BeforeTargets="PreBuildEvent">
     <ItemGroup>
       <EmbeddedResource Include="Views\**" />

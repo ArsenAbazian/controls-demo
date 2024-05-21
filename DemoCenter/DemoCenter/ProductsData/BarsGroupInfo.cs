@@ -35,6 +35,11 @@ namespace DemoCenter.ProductsData
                 description : "The Toolbars & Menu library contains a PopupMenu component that you can use to attach a context menu to any control. Eremex context menu style settings are consistent with all toolbar library components.",
                 viewModelGetter: () => new ContextMenuPageViewModel(),
                 showInWeb: false),
+                
+                new PageInfo(name: "Mvvm", title: "Mvvm",
+                    description : "The Toolbars & Menu library fully support Model-View-ViewModel approach.",
+                    viewModelGetter: () => new MvvmToolbarManagerViewModel(),
+                    showInWeb: false),
             };
         }
     }
